@@ -8,17 +8,17 @@ The application fetches a list of make-up items from the make up Api and display
 Onclick event of any item, the next page displays detailed information about the item.
 
 Key technologies used in building this application are:
-Coroutines
-Android studio
-Gradle
-Flow
-Kotlin
-Git/GitHub
-Glider
-Jetpack Library
-Retrofit
-Jetpack–Lifecycle
-ViewModel
-ViewBinding
-NavigationComponent
+Coroutines,
+Android studio,
+Gradle,
+Flow,
+Kotlin,
+Git/GitHub,
+Glider,
+Jetpack Library,
+Retrofit,
+Jetpack–Lifecycle,
+ViewModel,
+ViewBinding,
+NavigationComponent,
 Dagger Hilt for dependency injection
