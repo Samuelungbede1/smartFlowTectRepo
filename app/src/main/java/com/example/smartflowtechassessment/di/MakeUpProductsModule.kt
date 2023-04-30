@@ -11,6 +11,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module
@@ -23,7 +24,10 @@ object MakeUpProductsModule {
 
         val interceptor = HttpLoggingInterceptor()
         interceptor.level= HttpLoggingInterceptor.Level.BODY
-        val client: OkHttpClient = OkHttpClient.Builder().addInterceptor(interceptor).build()
+        val client: OkHttpClient = OkHttpClient.Builder().addInterceptor(interceptor)
+            .connectTimeout(25, TimeUnit.SECONDS)
+            .writeTimeout(25, TimeUnit.SECONDS)
+            .readTimeout(25, TimeUnit.SECONDS).build()
 
         return Retrofit.Builder()
             .baseUrl(BASE_URL)

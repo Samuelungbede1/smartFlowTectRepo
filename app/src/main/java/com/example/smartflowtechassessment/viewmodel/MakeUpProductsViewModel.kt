@@ -136,7 +136,7 @@ class MakeUpProductsViewModel @Inject constructor(private val makeUpRepositoryIn
         viewModelScope.launch {
             _makeUpProductList.postValue(ApiCallNetworkResource.Loading())
             try {
-                delay(1)
+                delay(10)
                 val response = makeUpRepositoryInterface.getMakeUpProducts()
                 if (response.isSuccessful) {
 
