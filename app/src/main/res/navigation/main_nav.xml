@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav"
-    app:startDestination="@id/makeUpItemList">
+    app:startDestination="@id/makeUpProductsFragment">
 
     <fragment
-        android:id="@+id/makeUpItemList"
-        android:name="com.example.smartflowtechassessment.MakeUpItemList"
-        android:label="fragment_make_up_item_list"
-        tools:layout="@layout/fragment_make_up_item_list" />
+        android:id="@+id/makeUpProductsFragment"
+        android:name="com.example.smartflowtechassessment.ui.MakeUpProductsFragment"
+        android:label="fragment_make_up_products"
+        tools:layout="@layout/fragment_make_up_products" />
 </navigation>
