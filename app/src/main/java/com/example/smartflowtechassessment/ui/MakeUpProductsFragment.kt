@@ -27,6 +27,10 @@ class MakeUpProductsFragment : Fragment(R.layout.fragment_make_up_products), OnP
     private var brandItemList = ArrayList<MakeupBrand>()
     private lateinit var brandsAdapter: BrandsAdapter
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        makeUpProductsViewModel.getMakeUpProducts()
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -40,7 +44,6 @@ class MakeUpProductsFragment : Fragment(R.layout.fragment_make_up_products), OnP
         recyclerView.adapter = brandsAdapter
 
         getMakeUpProductsResponseObserver()
-        makeUpProductsViewModel.getMakeUpProducts()
 
     }
 

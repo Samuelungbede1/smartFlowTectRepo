@@ -3,22 +3,17 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.smartflowtechassessment.viewmodel.MakeUpProductsViewModel
 import com.example.smartflowtechassessment.R
-import com.example.smartflowtechassessment.adapter.BrandsAdapter
 import com.example.smartflowtechassessment.adapter.ColorItemAdapter
+import com.example.smartflowtechassessment.adapter.TagItemAdapter
 import com.example.smartflowtechassessment.databinding.FragmentMakeupItemDetailsBinding
-import com.example.smartflowtechassessment.model.MakeupBrand
 import com.example.smartflowtechassessment.model.ProductColor
-import com.example.smartflowtechassessment.utils.ApiCallNetworkResource
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -29,25 +24,36 @@ class MakeupItemDetailsFragment : Fragment(R.layout.fragment_makeup_item_details
     private val makeUpProductsViewModel: MakeUpProductsViewModel by activityViewModels()
     private var completeProductDescription = "";
 
-    private lateinit var recyclerView: RecyclerView
+    private lateinit var colorsRecyclerView: RecyclerView
+    private lateinit var tagsRecyclerView: RecyclerView
     private var productColorList = ArrayList<ProductColor>()
+    private var tagsList = ArrayList<String>()
     private lateinit var colorAdapter: ColorItemAdapter
-//    private lateinit var recyclerView: RecyclerView
-//    private var brandItemList = ArrayList<MakeupBrand>()
-//    private lateinit var brandsAdapter: BrandsAdapter
+    private lateinit var tagItemAdapter: TagItemAdapter
+
+
+
+
+
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentMakeupItemDetailsBinding.bind(view)
-        recyclerView = binding.productColorsRv
-        recyclerView.setHasFixedSize(true)
-        recyclerView.layoutManager = GridLayoutManager(context, 4)
+        colorsRecyclerView = binding.productColorsRv
+        tagsRecyclerView = binding.tagsRvTv
+
+        colorsRecyclerView.setHasFixedSize(true)
+        tagsRecyclerView.setHasFixedSize(true)
+
+        colorsRecyclerView.layoutManager = GridLayoutManager(context, 4)
+        tagsRecyclerView.layoutManager = GridLayoutManager(context, 6)
+
         colorAdapter = ColorItemAdapter(productColorList,requireContext())
-        recyclerView.adapter = colorAdapter
-//
-//        makeUpProductsViewModel.getMakeUpProducts()
-        selectedMakeupProductObserver()
+        tagItemAdapter = TagItemAdapter(tagsList,requireContext())
+
+        colorsRecyclerView.adapter = colorAdapter
+        tagsRecyclerView.adapter = tagItemAdapter
 
         // Remove the maxLines limit and update the text to show the complete description
         binding.seeMoreTv.setOnClickListener {
@@ -55,6 +61,10 @@ class MakeupItemDetailsFragment : Fragment(R.layout.fragment_makeup_item_details
             binding.productDescriptionTv.ellipsize = null
             binding.productDescriptionTv.text = completeProductDescription
         }
+
+
+        selectedMakeupProductObserver()
+
 
     }
 
@@ -65,9 +75,16 @@ class MakeupItemDetailsFragment : Fragment(R.layout.fragment_makeup_item_details
             binding.productDescriptionTv.text = it.description
             binding.productNameTv.text = it.name
             completeProductDescription = it.description
+            binding.productPriceTv.text = "${it.price_sign+it.price+" "+it.currency}"
+
             productColorList = it.product_colors!!
             colorAdapter.addColors(productColorList)
             colorAdapter.notifyDataSetChanged()
+
+            tagsList = it.tag_list!!
+            tagItemAdapter.addTags(tagsList)
+            tagItemAdapter.notifyDataSetChanged()
+
 
             Glide.with(requireActivity())
                 .load("https:${it.api_featured_image}")
