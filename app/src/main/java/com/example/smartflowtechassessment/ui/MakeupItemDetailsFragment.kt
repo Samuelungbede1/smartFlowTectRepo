@@ -34,9 +34,6 @@ class MakeupItemDetailsFragment : Fragment(R.layout.fragment_makeup_item_details
 
 
 
-
-
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentMakeupItemDetailsBinding.bind(view)
@@ -65,7 +62,6 @@ class MakeupItemDetailsFragment : Fragment(R.layout.fragment_makeup_item_details
 
         selectedMakeupProductObserver()
 
-
     }
 
 
@@ -73,7 +69,7 @@ class MakeupItemDetailsFragment : Fragment(R.layout.fragment_makeup_item_details
     private fun selectedMakeupProductObserver() {
         makeUpProductsViewModel.makeupProductItem.observe(viewLifecycleOwner) {
             binding.productDescriptionTv.text = it.description
-            binding.productNameTv.text = it.name
+            binding.productNameTv.text = it.name.trim()
             completeProductDescription = it.description
             binding.productPriceTv.text = "${it.price_sign+it.price+" "+it.currency}"
 
