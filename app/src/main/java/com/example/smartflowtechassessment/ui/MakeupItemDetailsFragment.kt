@@ -22,7 +22,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class MakeupItemDetailsFragment : Fragment(R.layout.fragment_makeup_item_details) {
     private lateinit var binding: FragmentMakeupItemDetailsBinding
     private val makeUpProductsViewModel: MakeUpProductsViewModel by activityViewModels()
-    private var completeProductDescription = "";
+    private var completeProductDescription = ""
 
     private lateinit var colorsRecyclerView: RecyclerView
     private lateinit var tagsRecyclerView: RecyclerView

@@ -2,7 +2,6 @@ package com.example.smartflowtechassessment
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.smartflowtechassessment.R
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

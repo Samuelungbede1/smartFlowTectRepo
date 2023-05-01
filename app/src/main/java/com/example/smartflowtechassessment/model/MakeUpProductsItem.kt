@@ -1,5 +1,6 @@
 package com.example.smartflowtechassessment.model
 
+
 data class MakeUpProductsItem(
     val api_featured_image: String,
     val brand: String,

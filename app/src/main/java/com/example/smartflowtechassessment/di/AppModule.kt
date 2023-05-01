@@ -1,7 +1,6 @@
 package com.example.smartflowtechassessment.di
 
 import android.content.Context
-import com.example.smartflowtechassessment.di.MakeUpProductsApplication
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

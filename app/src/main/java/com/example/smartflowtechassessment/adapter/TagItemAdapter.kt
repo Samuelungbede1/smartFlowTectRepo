@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smartflowtechassessment.R
-import com.example.smartflowtechassessment.model.ProductColor
 
 
 class TagItemAdapter(private val tagList: ArrayList<String>, private val context: Context) :
