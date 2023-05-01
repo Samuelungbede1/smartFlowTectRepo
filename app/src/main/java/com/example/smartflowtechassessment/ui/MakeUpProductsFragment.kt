@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.Toast
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -12,14 +13,16 @@ import com.example.smartflowtechassessment.viewmodel.MakeUpProductsViewModel
 import com.example.smartflowtechassessment.R
 import com.example.smartflowtechassessment.adapter.BrandsAdapter
 import com.example.smartflowtechassessment.databinding.FragmentMakeUpProductsBinding
+import com.example.smartflowtechassessment.model.MakeUpProductsItem
 import com.example.smartflowtechassessment.model.MakeupBrand
+import com.example.smartflowtechassessment.utils.OnProductItemClickListener
 import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class MakeUpProductsFragment : Fragment(R.layout.fragment_make_up_products) {
+class MakeUpProductsFragment : Fragment(R.layout.fragment_make_up_products), OnProductItemClickListener {
     private lateinit var binding: FragmentMakeUpProductsBinding
-    private val makeUpProductsViewModel: MakeUpProductsViewModel by viewModels()
+    private val makeUpProductsViewModel: MakeUpProductsViewModel by activityViewModels()
     private lateinit var recyclerView: RecyclerView
     private var brandItemList = ArrayList<MakeupBrand>()
     private lateinit var brandsAdapter: BrandsAdapter
@@ -28,11 +31,12 @@ class MakeUpProductsFragment : Fragment(R.layout.fragment_make_up_products) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentMakeUpProductsBinding.bind(view)
+        val listener = this
 
         recyclerView = binding.makeupListRecyclerView
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(context)
-        brandsAdapter = BrandsAdapter(brandItemList,requireContext())
+        brandsAdapter = BrandsAdapter(brandItemList,requireContext(),listener)
         recyclerView.adapter = brandsAdapter
 
         getMakeUpProductsResponseObserver()
@@ -65,7 +69,9 @@ class MakeUpProductsFragment : Fragment(R.layout.fragment_make_up_products) {
     }
 
 
-
+    override fun onProductItemClick(makeupProduct: MakeUpProductsItem) {
+        makeUpProductsViewModel.setSelectedMakeupProduct(makeupProduct)
+    }
 
 
 }
