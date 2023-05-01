@@ -37,6 +37,9 @@ class MakeupItemDetailsFragment : Fragment(R.layout.fragment_makeup_item_details
 //    private lateinit var brandsAdapter: BrandsAdapter
 
 
+
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentMakeupItemDetailsBinding.bind(view)

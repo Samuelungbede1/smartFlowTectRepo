@@ -9,7 +9,6 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smartflowtechassessment.R
-import com.example.smartflowtechassessment.model.MakeupBrand
 import com.example.smartflowtechassessment.model.ProductColor
 
 

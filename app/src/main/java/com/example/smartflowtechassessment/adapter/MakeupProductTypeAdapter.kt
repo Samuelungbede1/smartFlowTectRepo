@@ -36,7 +36,7 @@ class MakeupProductTypeAdapter(private val makeupProductTypes: ArrayList<MakeUpP
         val productType = makeupProductTypes[position]
         holder.titleTv.text = productType.productType
         holder.productTypeRecyclerView.setHasFixedSize(true)
-        holder.productTypeRecyclerView.layoutManager = GridLayoutManager(context, 2)
+        holder.productTypeRecyclerView.layoutManager = GridLayoutManager(context, 3)
         val makeupProductItemAdapter = MakeupItemAdapter(productType.products, context,listener)
         holder.productTypeRecyclerView.adapter = makeupProductItemAdapter
     }
