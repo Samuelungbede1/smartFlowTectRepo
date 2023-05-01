@@ -26,7 +26,6 @@ class MakeupItemAdapter(private val makeupItems: List<MakeUpProductsItem>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val makeupProduct = makeupItems[position]
         holder.productName.text = makeupProduct.name
-
     }
 
     override fun getItemCount(): Int = makeupItems.size
