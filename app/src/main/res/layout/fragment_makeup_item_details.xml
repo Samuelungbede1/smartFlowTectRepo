@@ -12,7 +12,6 @@
         android:layout_height="wrap_content"
         tools:context=".ui.MakeupItemDetailsFragment">
 
-
     <!-- Product Image -->
     <ImageView
         android:id="@+id/product_image_iv"
@@ -25,22 +24,36 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <!-- Product Name -->
-    <TextView
-        android:id="@+id/product_name_tv"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Product Name"
-        android:paddingHorizontal="12dp"
-        android:textStyle="bold"
-        android:fontFamily="sans-serif"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/product_description_tv"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/product_image_iv" />
+        <TextView
+            android:id="@+id/product_name_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:paddingHorizontal="12dp"
+            android:text="Product Name"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/product_description_tv"
+            app:layout_constraintEnd_toStartOf="@+id/product_price_tv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/product_image_iv" />
 
-    <!-- Product Description -->
+        <TextView
+            android:id="@+id/product_price_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:paddingHorizontal="12dp"
+            android:text="Product Price"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/product_image_iv" />
+
+
+        <!-- Product Description -->
         <TextView
             android:id="@+id/product_description_tv"
             android:layout_width="0dp"
@@ -82,6 +95,7 @@
 
 
 <!--    &lt;!&ndash; Product Tags Label &ndash;&gt;-->
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/product_colors_rv"
             android:layout_width="0dp"
@@ -90,34 +104,40 @@
             android:padding="8dp"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/product_colors_label_tv"
             app:spanCount="5"
             tools:itemCount="9"
             tools:listitem="@layout/color_item" />
 
-<!--    <TextView-->
-<!--        android:id="@+id/product_tags_label_tv"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:padding="16dp"-->
-<!--        android:text="product_tags_label"-->
-<!--        android:textSize="18sp"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/product_colors_rv" />-->
+        <TextView
+            android:id="@+id/product_tags__tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:paddingHorizontal="12dp"
+            android:layout_marginVertical="40dp"
+            android:text="Tags"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/product_colors_rv" />
 
-<!--    -->
-<!--    <androidx.recyclerview.widget.RecyclerView-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:clipToPadding="false"-->
-<!--        android:padding="8dp"-->
-<!--        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="1.0"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/product_tags_label_tv" />-->
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/tags_rv_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/product_tags__tv"
+            app:spanCount="5"
+            tools:itemCount="9"
+            tools:listitem="@layout/tag_item" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
