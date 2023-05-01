@@ -1,5 +1,4 @@
 package com.example.smartflowtechassessment.ui
-
 import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -13,7 +12,6 @@ import com.example.smartflowtechassessment.viewmodel.MakeUpProductsViewModel
 import com.example.smartflowtechassessment.R
 import com.example.smartflowtechassessment.adapter.BrandsAdapter
 import com.example.smartflowtechassessment.databinding.FragmentMakeUpProductsBinding
-import com.example.smartflowtechassessment.model.MakeUpProductsItem
 import com.example.smartflowtechassessment.model.MakeupBrand
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -34,7 +32,7 @@ class MakeUpProductsFragment : Fragment(R.layout.fragment_make_up_products) {
         recyclerView = binding.makeupListRecyclerView
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(context)
-        brandsAdapter = BrandsAdapter(brandItemList, requireContext())
+        brandsAdapter = BrandsAdapter(brandItemList,requireContext())
         recyclerView.adapter = brandsAdapter
 
         getMakeUpProductsResponseObserver()
@@ -42,32 +40,34 @@ class MakeUpProductsFragment : Fragment(R.layout.fragment_make_up_products) {
 
     }
 
+
+
     @SuppressLint("NotifyDataSetChanged")
     private fun getMakeUpProductsResponseObserver() {
         makeUpProductsViewModel.makeUpProductList.observe(viewLifecycleOwner) {
             when (it) {
                 is ApiCallNetworkResource.Success -> {
-                    brandItemList = it.data
+                    brandItemList = it.data!!
                     brandsAdapter.addBrands(brandItemList)
                     brandsAdapter.notifyDataSetChanged()
-//
+                        Toast.makeText(requireContext(), brandItemList[0].productTypes[2].productType.toString() , Toast.LENGTH_LONG).show()
                 }
-
 
                 is ApiCallNetworkResource.Error -> {
                     Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
-//                    binding.viewCover.visibility = View.GONE
-//                    binding.registerProgressBar.visibility = View.GONE
                 }
 
                 is ApiCallNetworkResource.Loading -> {
                     Toast.makeText(requireContext(), "Fetching List Brands ", Toast.LENGTH_LONG).show()
-//                    binding.viewCover.visibility = View.VISIBLE
-//                    binding.registerProgressBar.visibility = View.VISIBLE
                 }
             }
         }
     }
+
+
+
+
+
 }
 
 

@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smartflowtechassessment.R
@@ -31,7 +32,7 @@ class MakeupProductTypeAdapter(private val makeupProductTypes: ArrayList<MakeUpP
         val productType = makeupProductTypes[position]
         holder.titleTv.text = productType.productType
         holder.productTypeRecyclerView.setHasFixedSize(true)
-        holder.productTypeRecyclerView.layoutManager = LinearLayoutManager(context)
+        holder.productTypeRecyclerView.layoutManager = GridLayoutManager(context, 2)
         val makeupProductItemAdapter = MakeupItemAdapter(productType.products)
         holder.productTypeRecyclerView.adapter = makeupProductItemAdapter
     }

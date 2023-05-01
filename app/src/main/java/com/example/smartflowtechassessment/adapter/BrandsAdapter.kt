@@ -25,7 +25,7 @@ class BrandsAdapter(private val makeUpBrandList: ArrayList<MakeupBrand>, private
 
     override fun onBindViewHolder(holder: ParentViewHolder, position: Int) {
         val brandItem = makeUpBrandList[position]
-        holder.titleTv.text = brandItem.brandName
+        holder.titleTv.text = brandItem.brand
         holder.productTypeRecyclerView.setHasFixedSize(true)
         holder.productTypeRecyclerView.layoutManager = LinearLayoutManager(context)
         val makeupProductTypeAdapter = MakeupProductTypeAdapter(brandItem.productTypes,context)
