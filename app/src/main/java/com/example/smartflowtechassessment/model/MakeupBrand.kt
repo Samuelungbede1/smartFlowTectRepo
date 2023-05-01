@@ -1,6 +1,10 @@
 package com.example.smartflowtechassessment.model
+import android.os.Parcelable
+import kotlinx.android.parcel.RawValue
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class MakeupBrand(
-    val brandName: String,
-    val productTypes: List<MakeUpProductType>
-)
+    val brand: String?,
+    val productTypes: @RawValue ArrayList<MakeUpProductType>
+): Parcelable
