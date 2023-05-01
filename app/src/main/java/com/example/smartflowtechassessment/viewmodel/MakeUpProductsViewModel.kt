@@ -3,7 +3,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.smartflowtechassessment.model.MakeUpProductType
-import com.example.smartflowtechassessment.model.MakeUpProducts
 import com.example.smartflowtechassessment.model.MakeUpProductsItem
 import com.example.smartflowtechassessment.model.MakeupBrand
 import com.example.smartflowtechassessment.repository.MakeUpRepository
@@ -15,10 +14,8 @@ import javax.inject.Inject
 @HiltViewModel
 class MakeUpProductsViewModel @Inject constructor(private val makeUpRepositoryInterface: MakeUpRepository) : ViewModel() {
 
-    private val _makeUpProductList: MutableLiveData<ApiCallNetworkResource<ArrayList<MakeupBrand>>> =
-        MutableLiveData()
-    val makeUpProductList: LiveData<ApiCallNetworkResource<ArrayList<MakeupBrand>>> =
-        _makeUpProductList
+    private val _makeUpProductList: MutableLiveData<ApiCallNetworkResource<ArrayList<MakeupBrand>>> = MutableLiveData()
+    val makeUpProductList: LiveData<ApiCallNetworkResource<ArrayList<MakeupBrand>>> = _makeUpProductList
 
 
     private val _makeupProductItem : MutableLiveData<MakeUpProductsItem> = MutableLiveData()

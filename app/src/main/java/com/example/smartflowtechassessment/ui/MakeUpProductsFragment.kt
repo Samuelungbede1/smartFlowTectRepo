@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smartflowtechassessment.utils.ApiCallNetworkResource
@@ -54,6 +53,7 @@ class MakeUpProductsFragment : Fragment(R.layout.fragment_make_up_products), OnP
         makeUpProductsViewModel.makeUpProductList.observe(viewLifecycleOwner) {
             when (it) {
                 is ApiCallNetworkResource.Success -> {
+                    binding.progressBar.visibility = View.GONE
                     brandItemList = it.data!!
                     brandsAdapter.addBrands(brandItemList)
                     brandsAdapter.notifyDataSetChanged()
@@ -61,11 +61,13 @@ class MakeUpProductsFragment : Fragment(R.layout.fragment_make_up_products), OnP
                 }
 
                 is ApiCallNetworkResource.Error -> {
+                    binding.progressBar.visibility = View.GONE
                     Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
                 }
 
                 is ApiCallNetworkResource.Loading -> {
-                    Toast.makeText(requireContext(), "Fetching List Brands ", Toast.LENGTH_LONG).show()
+                    binding.progressBar.visibility = View.VISIBLE
+                    Toast.makeText(requireContext(), "Loading, Please wait", Toast.LENGTH_LONG).show()
                 }
             }
         }

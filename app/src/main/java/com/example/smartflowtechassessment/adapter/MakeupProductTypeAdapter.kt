@@ -15,8 +15,7 @@ import com.example.smartflowtechassessment.utils.OnProductItemClickListener
 
 class MakeupProductTypeAdapter(private val makeupProductTypes: ArrayList<MakeUpProductType>,
                                private val context: Context,
-                               private val listener: OnProductItemClickListener
-) :
+                               private val listener: OnProductItemClickListener) :
     RecyclerView.Adapter<MakeupProductTypeAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

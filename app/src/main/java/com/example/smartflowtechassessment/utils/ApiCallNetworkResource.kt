@@ -1,4 +1,6 @@
 package com.example.smartflowtechassessment.utils
+
+
  sealed class ApiCallNetworkResource<T>(
     val data : T? = null,
     val message : String? = null

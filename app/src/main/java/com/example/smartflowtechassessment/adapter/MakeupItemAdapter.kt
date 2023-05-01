@@ -45,14 +45,12 @@ class MakeupItemAdapter(private val makeupItems: List<MakeUpProductsItem>, priva
         holder.itemView.setOnClickListener {
             listener.onProductItemClick(makeupProduct)
             val action = MakeUpProductsFragmentDirections.actionMakeUpProductsFragmentToMakeupItemDetailsFragment2()
-                it.findNavController().navigate(action)
+            it.findNavController().navigate(action)
 
         }
     }
 
     override fun getItemCount(): Int = makeupItems.size
-
-
 }
 
 
