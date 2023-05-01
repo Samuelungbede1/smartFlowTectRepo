@@ -16,6 +16,4 @@ object RepositoryModule {
     fun providesApiRepository(makeUpProductsService: MakeUpProductsService): MakeUpRepositoryImp {
         return MakeUpRepositoryImp(makeUpProductsService)
     }
-
-
 }

@@ -2,7 +2,6 @@ package com.example.smartflowtechassessment.repository
 
 import com.example.smartflowtechassessment.api.MakeUpProductsService
 import com.example.smartflowtechassessment.model.MakeUpProducts
-import com.example.smartflowtechassessment.repository.MakeUpRepository
 import retrofit2.Response
 import javax.inject.Inject
 

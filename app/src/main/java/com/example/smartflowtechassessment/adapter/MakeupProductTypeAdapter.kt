@@ -10,9 +10,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smartflowtechassessment.R
 import com.example.smartflowtechassessment.model.MakeUpProductType
+import com.example.smartflowtechassessment.utils.OnProductItemClickListener
 
 
-class MakeupProductTypeAdapter(private val makeupProductTypes: ArrayList<MakeUpProductType>, private val context: Context) :
+class MakeupProductTypeAdapter(private val makeupProductTypes: ArrayList<MakeUpProductType>,
+                               private val context: Context,
+                               private val listener: OnProductItemClickListener
+) :
     RecyclerView.Adapter<MakeupProductTypeAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -33,7 +37,7 @@ class MakeupProductTypeAdapter(private val makeupProductTypes: ArrayList<MakeUpP
         holder.titleTv.text = productType.productType
         holder.productTypeRecyclerView.setHasFixedSize(true)
         holder.productTypeRecyclerView.layoutManager = GridLayoutManager(context, 2)
-        val makeupProductItemAdapter = MakeupItemAdapter(productType.products, context)
+        val makeupProductItemAdapter = MakeupItemAdapter(productType.products, context,listener)
         holder.productTypeRecyclerView.adapter = makeupProductItemAdapter
     }
 

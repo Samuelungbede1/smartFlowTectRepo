@@ -6,15 +6,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.smartflowtechassessment.R
 import com.example.smartflowtechassessment.model.MakeUpProductsItem
+import com.example.smartflowtechassessment.ui.MakeUpProductsFragmentDirections
+import com.example.smartflowtechassessment.utils.OnProductItemClickListener
 
 
-class MakeupItemAdapter(private val makeupItems: List<MakeUpProductsItem>, private val context: Context) :
-    RecyclerView.Adapter<MakeupItemAdapter.ViewHolder>() {
+class MakeupItemAdapter(private val makeupItems: List<MakeUpProductsItem>, private val context: Context, val listener: OnProductItemClickListener) :
+    RecyclerView.Adapter<MakeupItemAdapter.ViewHolder>(){
 
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -36,6 +39,15 @@ class MakeupItemAdapter(private val makeupItems: List<MakeUpProductsItem>, priva
             .load("https:$imageUrl")
             .transition(DrawableTransitionOptions.withCrossFade())
             .into(holder.image)
+
+
+        /**Setting click listener to the item in the recyclerview*/
+        holder.itemView.setOnClickListener {
+            listener.onProductItemClick(makeupProduct)
+            val action = MakeUpProductsFragmentDirections.actionMakeUpProductsFragmentToMakeupItemDetailsFragment2()
+                it.findNavController().navigate(action)
+
+        }
     }
 
     override fun getItemCount(): Int = makeupItems.size

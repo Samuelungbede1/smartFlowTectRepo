@@ -13,7 +13,7 @@ data class MakeUpProductsItem(
     val price: String,
     val price_sign: String,
     val product_api_url: String,
-    val product_colors: List<ProductColor>,
+    val product_colors: ArrayList<ProductColor>,
     val product_link: String,
     val product_type: String,
     val rating: Double,

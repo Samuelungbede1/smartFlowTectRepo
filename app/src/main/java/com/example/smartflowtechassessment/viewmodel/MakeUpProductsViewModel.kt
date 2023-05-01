@@ -3,6 +3,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.smartflowtechassessment.model.MakeUpProductType
+import com.example.smartflowtechassessment.model.MakeUpProducts
 import com.example.smartflowtechassessment.model.MakeUpProductsItem
 import com.example.smartflowtechassessment.model.MakeupBrand
 import com.example.smartflowtechassessment.repository.MakeUpRepository
@@ -18,6 +19,10 @@ class MakeUpProductsViewModel @Inject constructor(private val makeUpRepositoryIn
         MutableLiveData()
     val makeUpProductList: LiveData<ApiCallNetworkResource<ArrayList<MakeupBrand>>> =
         _makeUpProductList
+
+
+    private val _makeupProductItem : MutableLiveData<MakeUpProductsItem> = MutableLiveData()
+     val makeupProductItem : MutableLiveData<MakeUpProductsItem> = _makeupProductItem
 
 
     fun getMakeUpProducts() {
@@ -67,4 +72,10 @@ class MakeUpProductsViewModel @Inject constructor(private val makeUpRepositoryIn
                 MakeupBrand(brandName, makeupProducts as ArrayList<MakeUpProductType>)
             } as ArrayList<MakeupBrand>
     }
+
+
+    fun setSelectedMakeupProduct(makeUpProductItem: MakeUpProductsItem){
+        _makeupProductItem.postValue(makeUpProductItem)
+    }
+
 }

@@ -9,5 +9,15 @@
         android:id="@+id/makeUpProductsFragment"
         android:name="com.example.smartflowtechassessment.ui.MakeUpProductsFragment"
         android:label="fragment_make_up_products"
-        tools:layout="@layout/fragment_make_up_products" />
+        tools:layout="@layout/fragment_make_up_products" >
+        <action
+            android:id="@+id/action_makeUpProductsFragment_to_makeupItemDetailsFragment2"
+            app:destination="@id/makeupItemDetailsFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/makeupItemDetailsFragment2"
+        android:name="com.example.smartflowtechassessment.ui.MakeupItemDetailsFragment"
+        android:label="MakeupItemDetailsFragment"
+        tools:layout="@layout/fragment_makeup_item_details"
+        />
 </navigation>
