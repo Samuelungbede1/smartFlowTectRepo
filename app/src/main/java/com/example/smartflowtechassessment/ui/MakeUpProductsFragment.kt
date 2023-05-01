@@ -50,7 +50,7 @@ class MakeUpProductsFragment : Fragment(R.layout.fragment_make_up_products) {
                     brandItemList = it.data!!
                     brandsAdapter.addBrands(brandItemList)
                     brandsAdapter.notifyDataSetChanged()
-                        Toast.makeText(requireContext(), brandItemList[0].productTypes[2].productType.toString() , Toast.LENGTH_LONG).show()
+                        Toast.makeText(requireContext(), brandItemList[0].productTypes[0].products.size , Toast.LENGTH_LONG).show()
                 }
 
                 is ApiCallNetworkResource.Error -> {
