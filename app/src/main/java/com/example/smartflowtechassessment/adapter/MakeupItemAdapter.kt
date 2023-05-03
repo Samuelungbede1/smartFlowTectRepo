@@ -33,7 +33,7 @@ class MakeupItemAdapter(private val makeupItems: List<MakeUpProductsItem>, priva
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val makeupProduct = makeupItems[position]
-        holder.productName.text = makeupProduct.name.trim()
+        holder.productName.text = makeupProduct.name?.trim()
         val imageUrl = makeupProduct.api_featured_image
         Glide.with(context)
             .load("https:$imageUrl")
