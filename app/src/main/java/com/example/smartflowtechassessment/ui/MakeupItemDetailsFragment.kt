@@ -72,7 +72,13 @@ class MakeupItemDetailsFragment : Fragment(R.layout.fragment_makeup_item_details
             binding.productDescriptionTv.text = it.description
             binding.productNameTv.text = it.name.trim()
             completeProductDescription = it.description
-            binding.productPriceTv.text = "${it.price_sign+it.price+" "+it.currency}"
+
+
+            //Handling Null returned values from API
+            val priceSign = it.price_sign?: "$"
+            val currencyCode = it.currency?: "USD"
+            val price = it.price?: "0.0"
+            binding.productPriceTv.text = "$priceSign$price $currencyCode"
 
             productColorList = it.product_colors!!
             colorAdapter.addColors(productColorList)
