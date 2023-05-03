@@ -14,14 +14,30 @@ import javax.inject.Inject
 @HiltViewModel
 class MakeUpProductsViewModel @Inject constructor(private val makeUpRepositoryInterface: MakeUpRepository) : ViewModel() {
 
+    /**
+     * This private MutableLiveData variable is used to store and observe the API response of the makeup products list.
+     * It is exposed as a LiveData variable 'makeUpProductList' to the ViewModel, so that it can be observed by the UI layer.
+     * The ApiResponse is of type ArrayList<MakeupBrand> wrapped inside an ApiCallNetworkResource class.
+    */
     private val _makeUpProductList: MutableLiveData<ApiCallNetworkResource<ArrayList<MakeupBrand>>> = MutableLiveData()
     val makeUpProductList: LiveData<ApiCallNetworkResource<ArrayList<MakeupBrand>>> = _makeUpProductList
 
-
+    /**
+     * A LiveData that stores the selected makeup product item, used to update the UI with details
+     * of the selected product. The value can be set using the _makeupProductItem MutableLiveData.
+     * The current value of this LiveData can be observed using the makeupProductItem LiveData.
+    */
     private val _makeupProductItem : MutableLiveData<MakeUpProductsItem> = MutableLiveData()
      val makeupProductItem : MutableLiveData<MakeUpProductsItem> = _makeupProductItem
 
 
+    /**
+     * This function is responsible for making an API call to retrieve a list of makeup products,
+     * grouping the products by brand and product type, and transforming the result into an instance of ApiCallNetworkResource.
+     * The resulting resource is then set as the value of _makeUpProductList, which is observed by the UI to update the view accordingly.
+     * The function is executed asynchronously using Coroutines to prevent blocking the UI thread,
+     * and exceptions are caught and transformed into error resources.
+    */
     fun getMakeUpProducts() {
         _makeUpProductList.value = ApiCallNetworkResource.Loading()
         CoroutineScope(Dispatchers.IO).launch {
@@ -56,6 +72,13 @@ class MakeUpProductsViewModel @Inject constructor(private val makeUpRepositoryIn
         }
     }
 
+    /**
+     * Groups the given list of makeup products by brand and product type,
+     * returning an ArrayList of MakeupBrand objects
+     * Each MakeupBrand contains a brand name and a list of MakeupProductType
+     * objects, each of which represents a product type
+     * and a list of MakeupProducts of that type.
+    */
     private fun groupMakeUpProductsByBrandAndProductType(products: List<MakeUpProductsItem>): ArrayList<MakeupBrand> {
         return products.groupBy { it.brand }
             .map { (brandName, items) ->
@@ -71,6 +94,11 @@ class MakeUpProductsViewModel @Inject constructor(private val makeUpRepositoryIn
     }
 
 
+
+    /**
+     * Sets the selected makeup product item and updates the [makeupProductItem] LiveData with the new value.
+     * @param makeUpProductItem The selected makeup product item.
+     */
     fun setSelectedMakeupProduct(makeUpProductItem: MakeUpProductsItem){
         _makeupProductItem.postValue(makeUpProductItem)
     }
