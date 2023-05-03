@@ -57,6 +57,7 @@ class MakeupItemDetailsFragment : Fragment(R.layout.fragment_makeup_item_details
             binding.productDescriptionTv.maxLines = Integer.MAX_VALUE
             binding.productDescriptionTv.ellipsize = null
             binding.productDescriptionTv.text = completeProductDescription
+            binding.seeMoreTv.visibility = View.GONE
         }
 
 
