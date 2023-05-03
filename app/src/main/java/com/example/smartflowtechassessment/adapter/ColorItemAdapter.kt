@@ -32,7 +32,7 @@ class ColorItemAdapter(private val colorList: ArrayList<ProductColor>, private v
         holder.colorName.text = colors.colour_name
         val hexColor = colors.hex_value
         val color: Int? = Color.parseColor(hexColor)
-        if (color != null) {
+        if (color != null && hexColor.length == 7) {
             holder.colorCardView.setCardBackgroundColor(color)
         }
 
